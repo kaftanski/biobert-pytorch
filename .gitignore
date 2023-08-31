@@ -1,0 +1,3 @@
+datasets/
+embedding/__pycache__/
+embedding/pubmed_entity_2048.h5

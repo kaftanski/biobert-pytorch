@@ -58,7 +58,7 @@ def main():
     # We now keep distinct sets of args, for a cleaner separation of concerns.
     parser = HfArgumentParser((DataArguments))
     data_args = parser.parse_args_into_dataclasses()[0]
-
+    result = {}
     with h5py.File(data_args.indexed_path, 'r') as f:
         with open(data_args.inputtext_path, 'r') as f_in:
             
@@ -68,10 +68,12 @@ def main():
                 
                 embedding = f[entity_name]['embedding'][:]
                 
-                print("entity_name = {}".format(entity_name))
-                print("embedding = {}".format(embedding))
-                
-                break
+                # print("entity_name = {}".format(entity_name))
+                # print("embedding = {}".format(embedding))
+
+                result[entity_name] = embedding
+
+    return result
 
 def _mp_fn(index):
     # For xla_spawn (TPUs)

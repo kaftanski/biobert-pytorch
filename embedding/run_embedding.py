@@ -17,26 +17,20 @@
 
 
 import logging
-import os
-import sys
 from dataclasses import dataclass, field
-from typing import Dict, List, Optional, Tuple
+from typing import Optional, Tuple
 from torch.utils.data.dataloader import DataLoader
 
-import numpy as np
 import torch
-from torch import nn
 import h5py
-import pdb
 from tqdm import tqdm
 from transformers import (
     AutoConfig,
     AutoTokenizer,
     AutoModel,
     HfArgumentParser,
-    set_seed,
 )
-from utils_embedding import EmbeddingDataset, data_collator
+from BioBERT.biobert_pytorch.embedding.utils_embedding import EmbeddingDataset, data_collator
 
 logger = logging.getLogger(__name__)
 device = torch.device("cuda:0" if torch.cuda.is_available() else "cpu")
